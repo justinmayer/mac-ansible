@@ -29,7 +29,7 @@ I use this project to set up my Mac workstations in an automated way that facili
 
     ```sh
     mkdir ~/Projects
-    git clone https://github.com/justinmayer/mac-ansible.git ~/Projects/
+    git clone https://github.com/justinmayer/mac-ansible.git ~/Projects/git-ansible
     cd ~/Projects/mac-ansible/
     ```
 
