@@ -1,0 +1,12 @@
+---
+- name: SSH settings
+  import_tasks: ssh.yml
+
+- name: Install things
+  import_tasks: install.yml
+
+- name: Set up preferred shell
+  import_tasks: shell.yml
+
+- name: Build tools via asdf
+  import_tasks: asdf.yml

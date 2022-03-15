@@ -1,0 +1,27 @@
+---
+- name: Check for ~/.ssh directory
+  stat:
+    path: ~/.ssh
+  register: ssh_dir
+  tags: ['ssh', 'settings']
+
+- name: Ensure SSH directory exists
+  when: not ssh_dir.stat.exists
+  file: path={{ home }}/.ssh mode="0700" state=directory
+  tags: ['ssh', 'settings']
+
+- name: SSH known_hosts contains github.com key
+  lineinfile:
+    dest: ~/.ssh/known_hosts
+    create: true
+    mode: 0600
+    state: present
+    line: "{{ github_ssh_host_key }}"
+    regexp: "^github\\.com "
+  tags: ['ssh', 'settings']
+
+- name: Harden SSH client configuration
+  copy: src=ssh_config dest=/etc/ssh/ssh_config.d/harden_ssh_config owner=root group=wheel
+  become: true
+  when: sudo is defined and sudo == "yes"
+  tags: ['ssh', 'settings', 'sudo']

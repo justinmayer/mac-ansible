@@ -1,0 +1,29 @@
+---
+- name: Check for Brewfile
+  stat:
+    path: "{{ homebrew_brewfile_path }}"
+  register: homebrew_brewfile
+  tags: ['brew', 'homebrew', 'brewfile', 'bundle']
+
+- name: Update Homebrew
+  homebrew:
+    name: git
+    state: latest
+    update_homebrew: true
+  when: homebrew_brewfile.stat.exists and homebrew_use_brewfile
+  tags: ['brew', 'homebrew', 'brewfile', 'bundle']
+
+- name: Ensure Brewfile packages are installed
+  command: "brew bundle --file={{ homebrew_brewfile_path }}"
+  when: homebrew_brewfile.stat.exists and homebrew_use_brewfile
+  tags: ['brew', 'homebrew', 'brewfile', 'bundle']
+
+- name: Install global Python packages via Pipx
+  command: "pipx install {{ item }}"
+  loop: "{{ pipx_workstation_packages }}"
+  environment:
+    PIPX_DEFAULT_PYTHON: "{{ pipx_default_python }}"
+    PIP_REQUIRE_VIRTUALENV: false
+  tags: pipx
+
+

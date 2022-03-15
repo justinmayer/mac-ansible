@@ -1,0 +1,26 @@
+---
+homebrew_prefix: /opt/homebrew
+homebrew_bin: "{{ homebrew_prefix }}/bin"
+homebrew_use_brewfile: true
+homebrew_brewfile_dir: "{{ home }}"
+homebrew_brewfile_path: "{{ homebrew_brewfile_dir }}/.Brewfile"
+
+preferred_shell: "{{ homebrew_bin }}/fish"
+
+github_ssh_host_key: |
+  github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl
+
+pipx_default_python: "/usr/bin/python3"
+pipx_workstation_packages:
+  - "ansible~=2.9.0"
+  - doc2dash
+  - git-fame
+  - pre-commit
+  - sshuttle
+  - yt-dlp
+
+projects_dir: "Projects"
+virtualenvs_dir: ".virtualenvs"
+
+asdf_python_versions:
+  - "3.10.2"

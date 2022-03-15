@@ -1,0 +1,14 @@
+#!/usr/bin/env ansible-playbook
+- hosts: "{{ host|default('localhost') }}"
+
+  vars:
+    - user: "{{ ansible_env.USER }}"
+    - home: "{{ ansible_env.HOME }}"
+
+  tasks:
+    - debug:
+        msg: Check we are running in the directory of the script
+      failed_when: not ansible_env.PWD.endswith("/mac-ansible")
+
+    - import_role:
+        name: mac

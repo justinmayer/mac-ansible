@@ -1,0 +1,19 @@
+---
+- name: Check whether preferred shell exists in /etc/shells
+  shell: grep '^{{ preferred_shell }}$' /etc/shells
+  register: preferred_shell_exists_in_etc_shells
+  changed_when: false
+  failed_when: preferred_shell_exists_in_etc_shells.rc not in [0, 1]
+  tags: shell
+
+- name: Ensure preferred shell exists in /etc/shells
+  lineinfile: dest=/etc/shells line={{ preferred_shell }} state=present owner=root group=wheel mode=0644
+  become: true
+  when: preferred_shell_exists_in_etc_shells.rc == 1
+  tags: shell
+
+- name: Set preferred shell
+  user: name={{ user }} shell={{ preferred_shell }}
+  become: true
+  when: preferred_shell_exists_in_etc_shells.rc == 1
+  tags: shell

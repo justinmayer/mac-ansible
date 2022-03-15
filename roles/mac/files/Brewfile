@@ -1,0 +1,95 @@
+###################
+# Taps
+###################
+tap "homebrew/cask-fonts"
+
+###################
+# Brews from core
+###################
+brew "asdf"
+brew "atuin"
+brew "bat"
+brew "chezmoi"
+brew "chromaprint"
+brew "dockutil"
+brew "fish"
+brew "fzf"
+brew "gettext"
+brew "gh"
+brew "git"
+brew "git-delta"
+brew "git-filter-repo"
+brew "jpeg"
+brew "known_hosts"
+brew "less"
+brew "libpng"
+brew "mas"
+brew "openssl@1.1"
+brew "pandoc"
+brew "pipx"
+brew "ponysay"
+brew "readline"
+brew "ripgrep"
+brew "ripgrep-all"
+brew "sqlite3"
+brew "ssh-copy-id"
+brew "trash"
+brew "watch"
+brew "wget"
+brew "xz"
+brew "zoxide"
+
+###################
+# Casks from core
+###################
+cask "acorn"
+cask "aldente"
+cask "alfred"
+cask "bartender"
+cask "cardhop"
+cask "eloston-chromium", args: { no_quarantine: true }
+cask "dash"
+cask "default-folder-x"
+cask "fantastical"
+cask "hazel"
+cask "iina"
+cask "iterm2"
+cask "kaleidoscope"
+cask "karabiner-elements"
+cask "macvim"
+cask "moom"
+cask "netnewswire"
+cask "obsidian"
+cask "path-finder"
+cask "plexamp"
+cask "qlmarkdown"
+cask "rocket"
+cask "signal"
+cask "slack"
+cask "soundsource"
+cask "syncthing"
+cask "syntax-highlight", args: { no_quarantine: true }
+cask "tweetbot"
+cask "unclack"
+cask "unite"
+cask "1password"
+
+###################
+# Casks from taps
+###################
+cask "font-hack-nerd-font"
+
+###################
+# App Store
+###################
+mas "Link Unshortener", id: 1506953658
+mas "Lungo", id: 1263070803
+mas "Marked 2", id: 890031187
+mas "Remote Desktop", id: 409907375
+mas "ShellHistory", id: 1564015476
+mas "StopTheMadness", id: 1376402589
+mas "Tabs Saver for Safari", id: 1440006971
+mas "Things", id: 904280696
+mas "Tweaks for Twitter", id: 1567751529
+mas "WiFi Explorer", id: 494803304
+mas "Wireguard", id: 1451685025

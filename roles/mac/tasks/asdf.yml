@@ -1,0 +1,20 @@
+---
+- name: Ensure project & virtual environment home directories exist
+  file: path="{{ home }}/{{ item }}" state=directory
+  loop:
+    - "{{ projects_dir }}"
+    - "{{ virtualenvs_dir }}"
+  tags: ['python', 'virtualenv']
+
+- name: Add asdf Python plugin
+  command: "{{ homebrew_bin }}/asdf plugin add python"
+  args:
+    creates: "{{ home }}/.asdf/plugins/python"
+  tags: ['asdf', 'virtualenv']
+
+- name: Build Python interpreter(s) via asdf
+  command: "{{ homebrew_bin }}/asdf install python {{ item }}"
+  args:
+    creates: "{{ home }}/.asdf/installs/python/{{ item }}"
+  loop: "{{ asdf_python_versions }}"
+  tags: ['asdf', 'virtualenv']
