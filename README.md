@@ -22,10 +22,18 @@ I use this project to set up my Mac workstations in an automated way that facili
     ```sh
     cd ~/.ssh/
     ssh-keygen -t ed25519 -o -a 100
-    ssh-add -K ~/.ssh/id_ed25519
+    ssh-add --apple-use-keychain ~/.ssh/id_ed25519
     ```
 
-5. Review `roles/mac/files/Brewfile` and determine if you need to make any changes. If so, copy that file to `~/.Brewfile` and then make your desired changes:
+5. Clone this repository:
+
+    ```sh
+    mkdir ~/Projects
+    git clone https://github.com/justinmayer/mac-ansible.git ~/Projects/
+    cd ~/Projects/mac-ansible/
+    ```
+
+6. Review `roles/mac/files/Brewfile` and determine if you need to make any changes. If so, copy that file to `~/.Brewfile` and then make your desired changes:
 
     ```sh
     cp roles/mac/files/Brewfile ~/.Brewfile
@@ -36,7 +44,7 @@ I use this project to set up my Mac workstations in an automated way that facili
     ln -s $PWD/roles/mac/files/Brewfile $HOME/.Brewfile
     ```
 
-6. Run the Ansible playbook, which comes with several configurable options. The following invocation will use the default settings:
+7. Run the Ansible playbook, which comes with several configurable options. The following invocation will use the default settings:
 
     ```sh
     ./playbook.yml --ask-become-pass -e "sudo=yes"
